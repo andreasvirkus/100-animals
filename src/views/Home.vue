@@ -1,9 +1,9 @@
 <template>
   <main class="home">
-    <form name="reg" method="post">
+    <form name="reg" method="post" action="/submit">
       <input type="hidden" name="form-name" value="reg" />
       <p style="display:none;">
-        <label>Don’t fill this out: <input name="bot-field"></label>
+        <label>Leave this field empty <input name="bot-field"></label>
       </p>
 
       <div class="form-control">
