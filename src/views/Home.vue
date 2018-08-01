@@ -8,7 +8,7 @@
 
       <div class="form-control">
         <label>Country</label>
-        <select v-model="country">
+        <select v-model="country" name="country">
           <option disabled selected value>Pick a country</option>
           <option v-for="country in countries" :key="country.name" :value="country.name">{{ country.name }}</option>
         </select>
@@ -38,27 +38,15 @@
 
       <div class="form-control">
         <label>Age</label>
-        <select v-model="age">
+        <select v-model="age" name="age">
           <option disabled selected value>Your age range</option>
           <option v-for="age in ageRanges" :key="age.symbol" :value="age.symbol">{{ age.text }}</option>
         </select>
       </div>
 
-      <div class="form-control-group">
-        <div class="form-control">
-          <label>Class</label>
-          <input type="text" name="class" placeholder="Junior/Adult">
-        </div>
-
-        <div class="form-control grow-2x">
-          <label>E-mail</label>
-          <input type="email" name="email" placeholder="mail@domain.com">
-        </div>
-      </div>
-
       <div class="form-control">
         <label>Bow type</label>
-        <select v-model="bow">
+        <select v-model="bow" name="bow">
           <option disabled selected value>Your bow type</option>
           <option v-for="bow in bowTypes" :key="bow.symbol" :value="bow.symbol">{{ bow.text }}</option>
         </select>
