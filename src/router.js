@@ -18,6 +18,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
+      path: '/reg',
+      name: 'register',
+      component: () => import(/* webpackChunkName: "reg" */ './views/Register.vue')
+    },
+    {
       path: '/submit',
       name: 'submit',
       component: () => import(/* webpackChunkName: "submit" */ './views/Submit.vue')
