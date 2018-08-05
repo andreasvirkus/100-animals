@@ -1,7 +1,7 @@
 <template>
   <main class="reg">
     <h1>Register</h1>
-    <form name="reg" method="post" action="/submit">
+    <form name="reg" method="post" action="/submit" @submit.prevent="submit">
       <input type="hidden" name="form-name" value="reg" />
       <p style="display:none;">
         <label>Leave this field empty <input name="bot-field"></label>
@@ -122,12 +122,26 @@ export default {
   components: { Multiselect, Checkbox },
   methods: {
     submit (e) {
-      fetch('/', {
+      const data = {
+        'form-name': 'reg',
+        country: this.country,
+        firstname: this.firstname,
+        surname: this.surname,
+        gender: this.gender,
+        age: this.age,
+        bow: this.bow,
+        payment: this.payment,
+        comment: this.comment
+      }
+      console.log('Submitting:', data)
+      fetch('/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact', ...this.data })
-      }).then(() => alert('Success!'))
-        .catch(error => alert(error))
+        body: encode(data)
+      }).then(() => {
+        this.$router.push('/submit')
+        console.log('Success!')
+      }).catch(error => console.error(error))
     }
   }
 }
