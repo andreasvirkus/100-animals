@@ -38,12 +38,12 @@
           <input type="radio"
             v-model="gender"
             name="gender"
-            value="male"> Male</label>
+            value="M"> Male</label>
         <label>
           <input type="radio"
             v-model="gender"
             name="gender"
-            value="female"> Female</label>
+            value="F"> Female</label>
       </div>
 
       <div class="form-control">
@@ -128,10 +128,11 @@ export default {
         firstname: this.firstname,
         surname: this.surname,
         gender: this.gender,
-        age: this.age,
-        bow: this.bow,
-        payment: this.payment,
-        comment: this.comment
+        age: this.age.text,
+        bow: this.bow.text,
+        payment: this.payment ? 'Yes' : 'No',
+        comment: this.comment,
+        class: `${this.age.symbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
       fetch('/submit', {
