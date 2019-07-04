@@ -153,6 +153,7 @@ export default {
 <style lang="scss">
   main.reg {
     max-width: 30rem;
+    margin: 1rem auto;
   }
 
   form > * {
