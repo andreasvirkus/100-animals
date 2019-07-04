@@ -76,17 +76,6 @@
         </label>
       </div>
 
-      <div class="form-control">
-        <label>Payment via Bank
-        <checkbox name="payment" v-model="payment" />
-        </label>
-
-      </div>
-
-      <div class="form-control">
-        <textarea name="comment" v-model="comment" maxlength="200"></textarea>
-      </div>
-
       <button type="submit">Submit</button>
     </form>
   </main>
@@ -115,9 +104,9 @@ export default {
       surname: '',
       gender: '',
       age: '',
+      dob: {},
       bow: '',
-      payment: false,
-      comment: ''
+      payment: false
     }
   },
   components: { Multiselect, Checkbox },
@@ -132,7 +121,6 @@ export default {
         age: this.age.text,
         bow: this.bow.text,
         payment: this.payment ? 'Yes' : 'No',
-        comment: this.comment,
         class: `${this.age.symbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
