@@ -26,23 +26,6 @@
   </main>
 </template>
 
-<script>
-import { ageRanges, bowTypes, countries } from '@/models'
-import Multiselect from 'vue-multiselect'
-
-const encode = (data) => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
-}
-
-// TODO: Submit via ajax, add class from age, gender, bow
-export default {
-  name: 'home'
-}
-</script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
   main {
     max-width: 45rem;

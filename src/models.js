@@ -1,19 +1,39 @@
 export const ageRanges = [
   {
+    symbol: 'A',
+    label: 'Adult',
+    lower: 21,
+    upper: 54
+  },
+  {
     symbol: 'C',
-    text: '...13'
+    label: 'Cub',
+    lower: 0,
+    upper: 12
   },
   {
     symbol: 'J',
-    text: '13...16'
+    label: 'Junior',
+    lower: 13,
+    upper: 16
   },
   {
-    symbol: 'A',
-    text: '17...54'
+    symbol: 'S',
+    label: 'Senior',
+    lower: 65,
+    upper: 199
   },
   {
     symbol: 'V',
-    text: '55...'
+    label: 'Veteran',
+    lower: 55,
+    upper: 64
+  },
+  {
+    symbol: 'Y',
+    label: 'Young adult',
+    lower: 17,
+    upper: 20
   }
 ]
 
@@ -47,19 +67,19 @@ export const bowTypes = [
     text: 'Bowhunter Compound'
   },
   {
-    symbol: 'BH-U',
+    symbol: 'BU',
     text: 'Bowhunter Unlimited'
   },
   {
-    symbol: 'BH-L',
+    symbol: 'BL',
     text: 'Bowhunter Limited'
   },
   {
-    symbol: 'FC',
+    symbol: 'FS-C',
     text: 'Freestyle Compound'
   },
   {
-    symbol: 'FR',
+    symbol: 'FS-R',
     text: 'Freestyle Recurve'
   },
   {
@@ -69,57 +89,176 @@ export const bowTypes = [
 ]
 
 export const countries = [
-  'Albania',
-  'Andorra',
-  'Armenia',
-  'Austria',
-  'Azerbaijan',
-  'Belarus',
-  'Belgium',
-  'Bosnia and Herzegovina',
-  'Bulgaria',
-  'Croatia',
-  'Cyprus',
-  'Czech Republic',
-  'Dagestan',
-  'Denmark',
-  'England',
-  'Estonia',
-  'Finland',
-  'France',
-  'Georgia',
-  'Germany',
-  'Greece',
-  'Hungary',
-  'Iceland',
-  'Ireland',
-  'Italy',
-  'Kazakhstan',
-  'Kosovo',
-  'Latvia',
-  'Liechtenstein',
-  'Lithuania',
-  'Luxembourg',
-  'Macedonia (FYROM)',
-  'Malta',
-  'Moldova',
-  'Monaco',
-  'Montenegro',
-  'Netherlands',
-  'Norway',
-  'Poland',
-  'Portugal',
-  'Romania',
-  'Russia',
-  'San Marino',
-  'Scotland',
-  'Serbia',
-  'Slovakia',
-  'Slovenia',
-  'Spain',
-  'Sweden',
-  'Switzerland',
-  'Turkey',
-  'Ukraine',
-  'Wales'
+  {
+    key: 'AFAA',
+    label: 'Andorra'
+  },
+  {
+    key: 'AATA',
+    label: 'Argentina'
+  },
+  {
+    key: 'ABA',
+    label: 'Australia'
+  },
+  {
+    key: 'OBSV',
+    label: 'Austria'
+  },
+  {
+    key: 'RBA',
+    label: 'Belgium'
+  },
+  {
+    key: 'AFB',
+    label: 'Brazil'
+  },
+  {
+    key: 'BFAA',
+    label: 'Bulgaria'
+  },
+  {
+    key: 'FCA',
+    label: 'Canada'
+  },
+  {
+    key: 'Arqueros de Chile',
+    label: 'Chile'
+  },
+  {
+    key: 'CZ3D',
+    label: 'Czech Republic'
+  },
+  {
+    key: 'EFAA',
+    label: 'England'
+  },
+  {
+    key: 'FAAE',
+    label: 'Estonia'
+  },
+  {
+    key: 'AAE',
+    label: 'Europe'
+  },
+  {
+    key: 'FFAA',
+    label: 'Finland'
+  },
+  {
+    key: 'FFTL',
+    label: 'France'
+  },
+  {
+    key: 'DFBV',
+    label: 'Germany'
+  },
+  {
+    key: 'HAA',
+    label: 'Hungary'
+  },
+  {
+    key: 'IBA',
+    label: 'Iceland'
+  },
+  {
+    key: 'FAAI',
+    label: 'India'
+  },
+  {
+    key: 'IFAF',
+    label: 'Ireland'
+  },
+  {
+    key: 'FIARC',
+    label: 'Italy'
+  },
+  {
+    key: 'LAF',
+    label: 'Latvia'
+  },
+  {
+    key: 'FAAFL',
+    label: 'Liechtenstein'
+  },
+  {
+    key: 'FLTA',
+    label: 'Luxembourg'
+  },
+  {
+    key: 'FAAM',
+    label: 'Mexico'
+  },
+  {
+    key: 'AAN',
+    label: 'Namibia'
+  },
+  {
+    key: 'NHB',
+    label: 'Netherlands'
+  },
+  {
+    key: 'NZFAA',
+    label: 'New Zealand'
+  },
+  {
+    key: 'NIFAA',
+    label: 'Northern Ireland'
+  },
+  {
+    key: 'PFAA',
+    label: 'Poland'
+  },
+  {
+    key: 'FABP',
+    label: 'Portugal'
+  },
+  {
+    key: 'FRATF',
+    label: 'Romania'
+  },
+  {
+    key: 'FSTA',
+    label: 'San Marino'
+  },
+  {
+    key: 'SFAA',
+    label: 'Scotland'
+  },
+  {
+    key: 'SAA',
+    label: 'Slovakia'
+  },
+  {
+    key: 'SANAA',
+    label: 'South Africa'
+  },
+  {
+    key: 'AAL',
+    label: 'Spain'
+  },
+  {
+    key: 'SFSF',
+    label: 'Sweden'
+  },
+  {
+    key: 'FAAS',
+    label: 'Switzerland'
+  },
+  {
+    key: 'ZAA',
+    label: 'Zambia'
+  },
+  {
+    key: 'FUTARCO',
+    label: 'Uruguay'
+  },
+  {
+    key: 'NFAA',
+    label: 'USA'
+  },
+  {
+    key: 'WFAA',
+    label: 'Wales'
+  }
 ]

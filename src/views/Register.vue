@@ -12,6 +12,8 @@
         <multiselect
           v-model="country"
           :options="countries"
+          key="code"
+          label="label"
           name="country"
           placeolder="Select a country">
           <span slot="noResult">No such country</span>
@@ -101,7 +103,6 @@ const encode = (data) => {
     .join('&')
 }
 
-// TODO: Submit via ajax, add class from age, gender, bow
 export default {
   name: 'register',
   data () {
