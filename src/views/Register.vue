@@ -49,7 +49,21 @@
       </div>
 
       <div class="form-control">
-        <label>Age
+        <label>Date of birth</label>
+        <v-date-picker v-model="dob"
+          mode="single"
+          is-required>
+          <input type="text"
+            name="dob"
+            slot-scope='props'
+            :value="props.inputValue"
+            @change.native="props.updateValue($event.target.value)"
+            expanded>
+        </v-date-picker>
+      </div>
+
+      <div class="form-control">
+        <label>Age</label>
         <multiselect
           v-model="age"
           :options="ageRanges"
@@ -59,7 +73,6 @@
           placeolder="Your agerange">
           <span slot="noResult">No such age range</span>
         </multiselect>
-        </label>
       </div>
 
       <div class="form-control">
@@ -82,9 +95,10 @@
 </template>
 
 <script>
-import { ageRanges, bowTypes, countries } from '@/models'
-import Checkbox from '@/components/Checkbox'
 import Multiselect from 'vue-multiselect'
+
+import Checkbox from '@/components/Checkbox'
+import { ageRanges, bowTypes, countries } from '@/models'
 
 const encode = (data) => {
   return Object.keys(data)
@@ -96,15 +110,15 @@ export default {
   name: 'register',
   data () {
     return {
+      bowTypes,
       countries,
       ageRanges,
-      bowTypes,
       country: '',
       firstname: '',
       surname: '',
       gender: '',
       age: '',
-      dob: {},
+      dob: new Date('10-07-1985'),
       bow: '',
       payment: false
     }
@@ -145,7 +159,7 @@ export default {
   }
 
   form > * {
-    margin-top: 3rem;
+    margin-top: 1.25rem;
   }
 
   label {

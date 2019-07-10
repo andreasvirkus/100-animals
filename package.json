@@ -1,6 +1,6 @@
 {
-  "name": "100-animals",
-  "version": "0.1.0",
+  "name": "wfac-2020-registration",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
