@@ -3,8 +3,9 @@
     class="checkbox__label"
     :class="{ 'checkbox__label--disabled': disabled }">
     <input type="checkbox"
-      :required="required"
+      :id="id"
       :name="name"
+      :required="required"
       class="checkbox hidden-visually"
       v-model="val"
       :disabled="disabled">
@@ -28,6 +29,7 @@ export default {
     }
   },
   props: {
+    id: String,
     name: String,
     value: Boolean,
     required: Boolean,
@@ -77,7 +79,7 @@ export default {
         opacity: 1;
       }
       .checkbox__svg {
-        stroke: var(--highlight-purple);
+        stroke: #56be8e;
       }
     }
   }
@@ -106,7 +108,7 @@ export default {
   }
   &:checked {
     + .checkbox__svg {
-      stroke: var(--highlight-purple);
+      stroke: #56be8e;
 
       path {
         stroke-dashoffset: 60;

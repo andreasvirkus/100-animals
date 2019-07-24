@@ -32,4 +32,14 @@
     }
   }
 }
+.hidden-visually {
+  pointer-events: none;
+  position: fixed;
+  opacity: 0;
+  top: -10vh;
+}
+.f-center {
+  display: flex;
+  align-items: center;
+}
 </style>
