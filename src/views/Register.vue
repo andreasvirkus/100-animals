@@ -48,7 +48,7 @@
             value="F"> Female</label>
       </div>
 
-      <div class="form-control">
+      <div class="form-control" v-if="false">
         <label>Date of birth</label>
         <v-date-picker v-model="dob"
           mode="single"
@@ -70,6 +70,11 @@
           placeolder="Your agerange">
           <span slot="noResult">No such age range</span>
         </multiselect>
+      </div>
+
+      <div class="form-control" v-if="applicableForProClass">
+        <label for="checkbox">Pro</label>
+        <checkbox v-model="pro" id="checkbox" name="checkbox"/>
       </div>
 
       <div class="form-control">
@@ -97,6 +102,7 @@ import Multiselect from 'vue-multiselect'
 import Checkbox from '@/components/Checkbox'
 import { ageRanges, bowTypes, countries } from '@/models'
 
+const proAgeClasses = ['A', 'S', 'V']
 const encode = (data) => {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -115,14 +121,21 @@ export default {
       surname: '',
       gender: '',
       age: '',
+      pro: false,
       dob: new Date('10-07-1985'),
       bow: '',
       payment: false
     }
   },
   components: { Multiselect, Checkbox },
+  computed: {
+    applicableForProClass () {
+      return this.age && proAgeClasses.includes(this.age.symbol)
+    }
+  },
   methods: {
     submit (e) {
+      const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
       const data = {
         'form-name': 'reg',
         country: this.country,
@@ -132,7 +145,7 @@ export default {
         age: this.age.text,
         bow: this.bow.text,
         payment: this.payment ? 'Yes' : 'No',
-        class: `${this.age.symbol}${this.gender}${this.bow.symbol}`
+        class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
       fetch('/submit', {
