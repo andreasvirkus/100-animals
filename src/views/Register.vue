@@ -1,6 +1,6 @@
 <template>
   <main class="reg">
-    <h1>Register</h1>
+    <!-- <h1>Register</h1> -->
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
       <input type="hidden" name="form-name" value="reg" />
       <p style="display:none;">
