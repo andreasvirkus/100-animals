@@ -12,9 +12,10 @@
         <multiselect
           v-model="country"
           :options="countries"
-          key="code"
+          key="key"
           label="label"
           name="country"
+          :closeOnSelect="true"
           placeolder="Select a country">
           <span slot="noResult">No such country</span>
         </multiselect>
@@ -85,6 +86,7 @@
           label="text"
           name="bow"
           track-by="text"
+          :closeOnSelect="true"
           placeolder="Your bow type">
           <span slot="noResult">No such bow type</span>
         </multiselect>
@@ -138,11 +140,11 @@ export default {
       const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
       const data = {
         'form-name': 'reg',
-        country: this.country,
+        country: this.country.key,
         firstname: this.firstname,
         surname: this.surname,
         gender: this.gender,
-        age: this.age.text,
+        age: this.age.label,
         bow: this.bow.text,
         payment: this.payment ? 'Yes' : 'No',
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
