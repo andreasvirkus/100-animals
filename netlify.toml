@@ -10,5 +10,4 @@
       connect-src 'self';
       object-src 'none';
       style-src  'self' 'unsafe-inline' unpkg.com;
-      script-src 'self' 'unsafe-inline' storage.googleapis.com;
-      frame-ancestors https://www.wfac2020.o/rg;'''
+      script-src 'self' 'unsafe-inline' storage.googleapis.com'''
