@@ -1,7 +1,7 @@
 <template>
   <main class="reg">
     <div class="error-message" v-show="displayErrors">
-      <p>All fields are mandatory!</p>
+      <p>Fields with an <span class="color-red">*</span> are mandatory!</p>
     </div>
 
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
@@ -11,7 +11,7 @@
       </p>
 
       <div class="form-control">
-        <label for="country">Country</label>
+        <label for="country" class="mandatory">Country</label>
         <multiselect
           v-model="country"
           :options="countries"
@@ -27,37 +27,34 @@
 
       <div class="form-control-group">
         <div class="form-control">
-          <label>Firstname
+          <label class="mandatory" for="firstname">Firstname</label>
           <input type="text"
             name="firstname"
             v-model="firstname"
             placeholder="John"
             required>
-          </label>
         </div>
         <div class="form-control">
-          <label>Surname
+          <label class="mandatory" for="surname">Surname</label>
           <input type="text"
             name="surname"
             v-model="surname"
             placeholder="Smith"
             required>
-          </label>
         </div>
       </div>
 
       <div class="form-control">
-        <label>E-mail
+        <label class="mandatory" for="email">E-mail</label>
         <input type="email"
           name="email"
           v-model="email"
           placeholder="john.smith@example.com"
           required>
-        </label>
       </div>
 
       <div class="form-control">
-        <p>Gender</p>
+        <p class="mandatory">Gender</p>
         <label>
           <input type="radio"
             v-model="gender"
@@ -82,7 +79,7 @@
       </div>
 
       <div class="form-control">
-        <label>Age</label>
+        <label class="mandatory">Age</label>
         <multiselect
           v-model="age"
           :options="ageRanges"
@@ -102,7 +99,7 @@
       </div>
 
       <div class="form-control">
-        <label for="bow">Bow type</label>
+        <label for="bow" class="mandatory">Bow type</label>
         <multiselect
           v-model="bow"
           :options="filteredBowTypes"
@@ -362,5 +359,18 @@ button[type="submit"] {
 .textarea {
   resize: vertical;
   max-height: 10rem;
+}
+.color-red {
+  color: red;
+}
+.mandatory {
+  position: relative;
+
+  &::after {
+    content: '*';
+    display: inline-block;
+    padding-left: 2px;
+    color: red;
+  }
 }
 </style>
