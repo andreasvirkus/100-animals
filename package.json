@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --modern",
+    "build:func": "netlify-lambda build lambda",
+    "build:dist": "npm run build && npm run build:func",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "dayjs": "^1.8.15",
+    "node-fetch": "^2.6.0",
     "register-service-worker": "^1.0.0",
     "v-calendar": "^1.0.0-beta.14",
     "vue": "^2.5.16",

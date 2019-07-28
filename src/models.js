@@ -96,7 +96,7 @@ export const roomTypes = [
     building: 'Main building',
     rooms: [
       { name: 'Twin room - Standard', price: 450 },
-      { name: 'Room w/ 3 single beds - Standard (3ppl.)', price: 610 },
+      { name: 'Room w/ 3 single beds - Standard', price: 610 },
       { name: 'Twin room - Comfort', price: 550 },
       { name: 'Room w/ 3 single beds - Comfort', price: 750 },
       { name: 'Room w/ 2 bunk beds (4ppl.)', price: 740 },
