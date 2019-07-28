@@ -1,6 +1,9 @@
 <template>
   <main class="reg">
-    <!-- <h1>Register</h1> -->
+    <div class="error-message" v-show="displayErrors">
+      <p>All fields are mandatory!</p>
+    </div>
+
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
       <input type="hidden" name="form-name" value="reg" />
       <p style="display:none;">
@@ -8,18 +11,17 @@
       </p>
 
       <div class="form-control">
-        <label>Country
+        <label for="country">Country</label>
         <multiselect
           v-model="country"
           :options="countries"
           key="key"
           label="label"
           name="country"
-          :closeOnSelect="true"
+          :close-on-select="true"
           placeolder="Select a country">
           <span slot="noResult">No such country</span>
         </multiselect>
-        </label>
       </div>
 
       <div class="form-control-group">
@@ -79,18 +81,17 @@
       </div>
 
       <div class="form-control">
-        <label>Bow type
+        <label for="bow">Bow type</label>
         <multiselect
           v-model="bow"
-          :options="bowTypes"
+          :options="filteredBowTypes"
           label="text"
           name="bow"
           track-by="text"
-          :closeOnSelect="true"
+          :close-on-select="true"
           placeolder="Your bow type">
           <span slot="noResult">No such bow type</span>
         </multiselect>
-        </label>
       </div>
 
       <button type="submit">Submit</button>
@@ -104,6 +105,7 @@ import Multiselect from 'vue-multiselect'
 import Checkbox from '@/components/Checkbox'
 import { ageRanges, bowTypes, countries } from '@/models'
 
+const proBowClasses = bowTypes.filter(b => b.pro)
 const proAgeClasses = ['A', 'S', 'V']
 const encode = (data) => {
   return Object.keys(data)
@@ -126,13 +128,17 @@ export default {
       pro: false,
       dob: new Date('10-07-1985'),
       bow: '',
-      payment: false
+      payment: false,
+      displayErrors: false
     }
   },
   components: { Multiselect, Checkbox },
   computed: {
     applicableForProClass () {
       return this.age && proAgeClasses.includes(this.age.symbol)
+    },
+    filteredBowTypes () {
+      return this.pro ? proBowClasses : bowTypes
     }
   },
   methods: {

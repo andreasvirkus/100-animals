@@ -76,15 +76,18 @@ export const bowTypes = [
   },
   {
     symbol: 'FS-C',
-    text: 'Freestyle Compound'
+    text: 'Freestyle Compound',
+    pro: true
   },
   {
     symbol: 'FS-R',
-    text: 'Freestyle Recurve'
+    text: 'Freestyle Recurve',
+    pro: true
   },
   {
     symbol: 'FU',
-    text: 'Freestyle Unlimited'
+    text: 'Freestyle Unlimited',
+    pro: true
   }
 ]
 
