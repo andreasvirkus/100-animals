@@ -7,7 +7,9 @@ const requestOptions = {
 
 exports.handler = async (event, context, callback) => {
   // Budget honeypot
+  console.log('Event body:', event.body)
   const { formName, check } = JSON.parse(event.body)
+  console.log('parsed', formName, check)
   if (formName !== 'reg' || check !== 'must-reg') {
     return callback(null, { statusCode: 403 })
   }
@@ -18,6 +20,5 @@ exports.handler = async (event, context, callback) => {
   const res = await got.post(process.env.FORM_WEBHOOK_URL, {
     body: event.body
   })
-  console.log('result', res)
   callback(null, { statusCode: 200 })
 }
