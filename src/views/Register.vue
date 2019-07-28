@@ -16,6 +16,7 @@
           v-model="country"
           :options="countries"
           key="key"
+          :tabindex="-1"
           label="label"
           name="country"
           placeolder="Select a country">
@@ -68,6 +69,7 @@
           :options="ageRanges"
           label="label"
           name="age"
+          :tabindex="-1"
           track-by="symbol"
           placeolder="Your agerange">
           <span slot="noResult">No such age range</span>
@@ -75,8 +77,8 @@
       </div>
 
       <div class="form-control" v-if="applicableForProClass">
-        <label for="checkbox">Pro</label>
-        <checkbox v-model="pro" id="checkbox" name="checkbox"/>
+        <label for="pro">Pro</label>
+        <checkbox v-model="pro" name="pro"/>
       </div>
 
       <div class="form-control">
@@ -86,6 +88,7 @@
           :options="filteredBowTypes"
           label="text"
           name="bow"
+          :tabindex="-1"
           track-by="text"
           placeolder="Your bow type">
           <span slot="noResult">No such bow type</span>
@@ -93,8 +96,38 @@
       </div>
 
       <div class="form-control">
-        <label for="checkbox">Accommodation</label>
-        <checkbox v-model="wantsAccommodation" id="checkbox" name="checkbox"/>
+        <label for="accommodation">Accommodation</label>
+        <checkbox v-model="wantsAccommodation" name="accommodation"/>
+      </div>
+
+      <div class="form-control" v-if="wantsAccommodation">
+        <label for="accomm">Room type</label>
+        <multiselect
+          v-model="accommodation"
+          :options="roomTypes"
+          label="name"
+          name="accomm"
+          :searchable="false"
+          :tabindex="-1"
+          track-by="name"
+          group-values="rooms"
+          group-label="building"
+          :group-select="false"
+          placeolder="Room type">
+          <template slot="option" slot-scope="props">
+            <span v-if="props.option.$isLabel">{{ props.option.$groupLabel }}</span>
+            <div v-else class="price-options">
+              <span>{{ props.option.name }}</span>
+              <span>- {{ props.option.price }}&euro;</span>
+            </div>
+          </template>
+        </multiselect>
+      </div>
+
+      <div class="form-control">
+        <label>Comment
+          <textarea v-model="comment" class="textarea"></textarea>
+        </label>
       </div>
 
       <button type="submit">Register</button>
@@ -106,7 +139,12 @@
 import Multiselect from 'vue-multiselect'
 
 import Checkbox from '@/components/Checkbox'
-import { ageRanges, bowTypes, countries } from '@/models'
+import {
+  ageRanges,
+  bowTypes,
+  countries,
+  roomTypes
+} from '@/models'
 
 const proBowClasses = bowTypes.filter(b => b.pro)
 const proAgeClasses = ['A', 'S', 'V']
@@ -123,10 +161,13 @@ export default {
       bowTypes,
       countries,
       ageRanges,
+      roomTypes,
       country: '',
+      comment: '',
       firstname: '',
       surname: '',
       gender: '',
+      accommodation: null,
       age: '',
       pro: false,
       dob: new Date('10-07-1985'),
@@ -194,91 +235,100 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss">
-  main.reg {
-    max-width: 30rem;
-    margin: 1rem auto;
-  }
+main.reg {
+  max-width: 30rem;
+  margin: 1rem auto;
+}
 
-  form > * {
-    margin-top: 1.25rem;
-  }
+form > * {
+  margin-top: 1.25rem;
+}
 
-  label {
-    display: block;
-    flex-basis: 100%;
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
-  .form-control-group {
-    flex-wrap: wrap;
-  }
-  textarea {
-    resize: vertical;
-  }
+label {
+  display: block;
+  flex-basis: 100%;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.form-control-group {
+  flex-wrap: wrap;
+}
+textarea {
+  resize: vertical;
+}
 
-  input[type="text"],
-  input[type="number"],
-  textarea {
-    border-color: #e8e8e8;
-  }
+input[type="text"],
+input[type="number"],
+textarea {
+  border-color: #e8e8e8;
+}
 
-  input[type="text"],
-  input[type="number"], {
-    display: block;
-    appearance: none;
-    width: 100%;
-    padding: 10px;
-    line-height: 20px;
-    font-size: 16px;
-    font-weight: inherit;
-    background: #fff;
-    border-radius: 5px;
-    border: 1px solid #e8e8e8;
-  }
+input[type="text"],
+input[type="number"], {
+  display: block;
+  appearance: none;
+  width: 100%;
+  padding: 10px;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: inherit;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+}
 
-  .multiselect input[type="text"],
-  .multiselect input[type="text"]:focus {
-    border: none;
-    margin-bottom: 0;
-    padding: 0 0 0 .5rem;
-  }
+.multiselect input[type="text"],
+.multiselect input[type="text"]:focus {
+  border: none;
+  margin-bottom: 0;
+  padding: 0 0 0 .5rem;
+}
 
-  input[type="radio"] {
-    appearance: none;
-    margin: 0 .5rem;
-    width: 1rem;
-    height: 1rem;
-    background: #eee;
-    box-shadow: inset 0 0 0 .4em white,
+input[type="radio"] {
+  appearance: none;
+  margin: 0 .5rem;
+  width: 1rem;
+  height: 1rem;
+  background: #eee;
+  box-shadow: inset 0 0 0 .4em white,
+    0 0 0 .2em #999;
+  border-radius: 50%;
+  transition: .2s;
+  cursor: pointer;
+  color: #363945;
+
+  &:hover,
+  &:checked {
+    background: #999;
+    box-shadow: inset 0 0 0 .5em white,
       0 0 0 .2em #999;
-    border-radius: 50%;
-    transition: .2s;
-    cursor: pointer;
-    color: #363945;
-
-    &:hover,
-    &:checked {
-      background: #999;
-      box-shadow: inset 0 0 0 .5em white,
-        0 0 0 .2em #999;
-    }
-
-    &:checked {
-      background: #56be8e;
-      box-shadow: inset 0 0 0 .4em white,
-        0 0 0 .2em #56be8e;
-    }
-
-    &:focus {
-      outline: 0;
-      box-shadow: inset 0 0 0 0.4em white,
-        0 0 0 0.2em #4caf50;
-    }
   }
 
-  button[type="submit"] {
-    &:focus {
-      border-color: #4caf50;
-    }
+  &:checked {
+    background: #56be8e;
+    box-shadow: inset 0 0 0 .4em white,
+      0 0 0 .2em #56be8e;
   }
+
+  &:focus {
+    outline: 0;
+    box-shadow: inset 0 0 0 0.4em white,
+      0 0 0 0.2em #4caf50;
+  }
+}
+
+button[type="submit"] {
+  &:focus {
+    border-color: #4caf50;
+  }
+}
+
+.price-options {
+  display: flex;
+  justify-content: space-between;
+}
+.textarea {
+  resize: vertical;
+  max-height: 10rem;
+}
 </style>

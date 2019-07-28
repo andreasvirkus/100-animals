@@ -91,6 +91,34 @@ export const bowTypes = [
   }
 ]
 
+export const roomTypes = [
+  {
+    building: 'Main building',
+    rooms: [
+      { name: 'Twin room - S', price: 450 },
+      { name: '3 single bed rooms - S (3ppl.)', price: 610 },
+      { name: 'Twin room - C', price: 550 },
+      { name: '3 single bed rooms - C (3ppl.)', price: 750 },
+      { name: '2 bunk bed room (4ppl.)', price: 740 },
+      { name: '3 bunk bed room (6ppl.)', price: 1000 }
+    ]
+  },
+  {
+    building: 'Stadion house',
+    rooms: [
+      { name: 'Twin room', price: 450 }
+    ]
+  },
+  {
+    building: 'Camp houses',
+    rooms: [
+      { name: 'Twin house', price: 400 },
+      { name: 'House w/ 4 single beds (4ppl.)', price: 700 },
+      { name: 'House w/ 2 bunk beds (4ppl.)', price: 700 }
+    ]
+  }
+]
+
 export const countries = [
   {
     key: 'AFAA',
