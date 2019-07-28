@@ -18,7 +18,6 @@
           key="key"
           label="label"
           name="country"
-          :close-on-select="true"
           placeolder="Select a country">
           <span slot="noResult">No such country</span>
         </multiselect>
@@ -88,13 +87,17 @@
           label="text"
           name="bow"
           track-by="text"
-          :close-on-select="true"
           placeolder="Your bow type">
           <span slot="noResult">No such bow type</span>
         </multiselect>
       </div>
 
-      <button type="submit">Submit</button>
+      <div class="form-control">
+        <label for="checkbox">Accommodation</label>
+        <checkbox v-model="wantsAccommodation" id="checkbox" name="checkbox"/>
+      </div>
+
+      <button type="submit">Register</button>
     </form>
   </main>
 </template>
@@ -129,6 +132,7 @@ export default {
       dob: new Date('10-07-1985'),
       bow: '',
       payment: false,
+      wantsAccommodation: false,
       displayErrors: false
     }
   },
@@ -143,6 +147,9 @@ export default {
   },
   methods: {
     submit (e) {
+      this.displayErrors = false
+      if (!this.validateFields()) return
+
       const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
       const data = {
         'form-name': 'reg',
@@ -152,7 +159,9 @@ export default {
         gender: this.gender,
         age: this.age.label,
         bow: this.bow.text,
+        // TODO: Add payment when Fienta succeeds
         payment: this.payment ? 'Yes' : 'No',
+        comment: this.comment,
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
@@ -164,6 +173,20 @@ export default {
         this.$router.push('/submit')
         console.log('Success!')
       }).catch(error => console.error(error))
+    },
+    validateFields () {
+      const requiredFields = [
+        this.country,
+        this.firstname,
+        this.surname,
+        this.gender,
+        this.age,
+        this.bow
+      ]
+      const validForm = requiredFields.every(field => !!field)
+      if (!validForm) this.displayErrors = true
+
+      return validForm
     }
   }
 }
@@ -246,6 +269,16 @@ export default {
         0 0 0 .2em #56be8e;
     }
 
-    &:focus { outline: 0; }
+    &:focus {
+      outline: 0;
+      box-shadow: inset 0 0 0 0.4em white,
+        0 0 0 0.2em #4caf50;
+    }
+  }
+
+  button[type="submit"] {
+    &:focus {
+      border-color: #4caf50;
+    }
   }
 </style>
