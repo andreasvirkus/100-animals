@@ -1,8 +1,7 @@
 <template>
   <main class="reg">
-    <div class="error-message" v-show="displayErrors">
-      <p>Fields with an <span class="color-red">*</span> are mandatory!</p>
-    </div>
+    <p class="error-message" v-show="displayErrors">
+      Fields with an <span class="color-red">*</span> are mandatory!</p>
 
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
       <input type="hidden" name="important-name" v-model="regCheck" />
@@ -202,6 +201,16 @@ export default {
       return this.pro ? proBowClasses : bowTypes
     }
   },
+  watch: {
+    displayErrors (state) {
+      if (state) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }
+    }
+  },
   methods: {
     submit (e) {
       this.displayErrors = false
@@ -372,5 +381,12 @@ button[type="submit"] {
     padding-left: 2px;
     color: red;
   }
+}
+.error-message {
+  background-color: #FFF6D9;
+  color: rgba(0,0,0,0.6);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding: 1rem;
 }
 </style>
