@@ -95,12 +95,12 @@ export const roomTypes = [
   {
     building: 'Main building',
     rooms: [
-      { name: 'Twin room - S', price: 450 },
-      { name: '3 single bed rooms - S (3ppl.)', price: 610 },
-      { name: 'Twin room - C', price: 550 },
-      { name: '3 single bed rooms - C (3ppl.)', price: 750 },
-      { name: '2 bunk bed room (4ppl.)', price: 740 },
-      { name: '3 bunk bed room (6ppl.)', price: 1000 }
+      { name: 'Twin room - Standard', price: 450 },
+      { name: 'Room w/ 3 single beds - Standard (3ppl.)', price: 610 },
+      { name: 'Twin room - Comfort', price: 550 },
+      { name: 'Room w/ 3 single beds - Comfort', price: 750 },
+      { name: 'Room w/ 2 bunk beds (4ppl.)', price: 740 },
+      { name: 'Room w/ 3 bunk beds (6ppl.)', price: 1000 }
     ]
   },
   {
@@ -112,7 +112,7 @@ export const roomTypes = [
   {
     building: 'Camp houses',
     rooms: [
-      { name: 'Twin house', price: 400 },
+      { name: 'House w/ twin room (2ppl.)', price: 400 },
       { name: 'House w/ 4 single beds (4ppl.)', price: 700 },
       { name: 'House w/ 2 bunk beds (4ppl.)', price: 700 }
     ]
