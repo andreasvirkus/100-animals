@@ -135,8 +135,8 @@
           <template slot="option" slot-scope="props">
             <span v-if="props.option.$isLabel">{{ props.option.$groupLabel }}</span>
             <div v-else class="price-options">
-              <span>{{ props.option.name }}</span>
-              <span>- {{ props.option.price }}&euro;</span>
+              <span>{{ (props.option || {}).name }}</span>
+              <span>- {{ (props.option || {}).price }}&euro;</span>
             </div>
           </template>
         </multiselect>
@@ -217,6 +217,9 @@ export default {
       if (!this.validateFields()) return
 
       const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
+      const room = (this.wantsAccommodation && this.accommodation)
+        ? `${this.accommodation.name} - ${this.accommodation.price}€`
+        : ''
       const data = {
         formName: 'reg',
         check: this.regCheck,
@@ -231,9 +234,7 @@ export default {
         // TODO: Add payment when Fienta succeeds
         payment: this.payment ? 'Yes' : 'No',
         comment: this.comment,
-        room: this.wantsAccommodation
-          ? `${this.accommodation.name} - ${this.accommodation.price}€`
-          : '',
+        room,
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
