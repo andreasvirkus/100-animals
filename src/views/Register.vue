@@ -211,7 +211,7 @@ export default {
       if (!this.validateFields()) return
 
       const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
-      const body = {
+      const data = {
         formName: 'reg',
         check: this.regCheck,
         country: this.country.label,
@@ -228,14 +228,14 @@ export default {
         room: `${this.accommodation.name} - ${this.accommodation.price}€`,
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
-      console.log('Submitting:', body)
+      console.log('Submitting:', data)
 
       const onLocalhost = window.location.hostname === 'localhost'
       const host = onLocalhost ? '' : '/.netlify/functions'
       fetch(`${host}/form`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        body
+        body: JSON.stringify(data)
       }).then(() => {
         this.$router.push('/submit')
         console.log('Success!')
