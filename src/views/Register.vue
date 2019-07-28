@@ -5,9 +5,9 @@
     </div>
 
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
-      <input type="hidden" name="form-name" value="reg" />
+      <input type="hidden" name="important-name" v-model="regCheck" />
       <p style="display:none;">
-        <label>Leave this field empty <input name="bot-field"></label>
+        <label>Leave this field empty <input name="important-field"></label>
       </p>
 
       <div class="form-control">
@@ -170,11 +170,6 @@ import {
 
 const proBowClasses = bowTypes.filter(b => b.pro)
 const proAgeClasses = ['A', 'S', 'V']
-const encode = (data) => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
-}
 
 export default {
   name: 'register',
@@ -196,6 +191,7 @@ export default {
       dob: new Date('10-07-1985'),
       bow: '',
       payment: false,
+      regCheck: 'must-reg',
       wantsAccommodation: false,
       displayErrors: false
     }
@@ -215,8 +211,9 @@ export default {
       if (!this.validateFields()) return
 
       const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
-      const data = {
-        'form-name': 'reg',
+      const body = {
+        formName: 'reg',
+        check: this.regCheck,
         country: this.country.label,
         memberCode: this.country.key,
         firstname: this.firstname,
@@ -231,14 +228,14 @@ export default {
         room: `${this.accommodation.name} - ${this.accommodation.price}€`,
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
-      console.log('Submitting:', data)
+      console.log('Submitting:', body)
 
       const onLocalhost = window.location.hostname === 'localhost'
       const host = onLocalhost ? '' : '/.netlify/functions'
       fetch(`${host}/form`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        body: encode(data)
+        body
       }).then(() => {
         this.$router.push('/submit')
         console.log('Success!')
