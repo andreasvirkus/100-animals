@@ -231,7 +231,9 @@ export default {
         // TODO: Add payment when Fienta succeeds
         payment: this.payment ? 'Yes' : 'No',
         comment: this.comment,
-        room: `${this.accommodation.name} - ${this.accommodation.price}€`,
+        room: this.wantsAccommodation
+          ? `${this.accommodation.name} - ${this.accommodation.price}€`
+          : '',
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
