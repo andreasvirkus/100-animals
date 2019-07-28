@@ -235,6 +235,7 @@ export default {
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
+      console.log('With body:', JSON.stringify(data))
 
       const onLocalhost = window.location.hostname === 'localhost'
       const host = onLocalhost ? '' : '/.netlify/functions'
