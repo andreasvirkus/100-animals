@@ -237,9 +237,7 @@ export default {
       console.log('Submitting:', data)
       console.log('With body:', JSON.stringify(data))
 
-      const onLocalhost = window.location.hostname === 'localhost'
-      const host = onLocalhost ? '' : '/.netlify/functions'
-      fetch(`${host}/form`, {
+      fetch(`/.netlify/functions/form`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify(data)
