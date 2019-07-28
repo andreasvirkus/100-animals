@@ -5,7 +5,7 @@
 - ~Field validation for all fields~
 - ~Accommodation checkbox and dropdown~
 - ~All dropdowns should close after selection~
-- Over-booking protection
+- Over-booking protection (FaunaDB or Firebase maybe)
 - Based on the picked date, assign an age group (based on 01/08/2020)
 - ~Add a "professional" checkbox (will override age group code as "P")~
 - ~Professional can only be Adult or higher (with bow class FS-C, FS-R, FU)~
