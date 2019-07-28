@@ -16,7 +16,7 @@
           v-model="country"
           :options="countries"
           key="key"
-          :tabindex="-1"
+          :tabindex="0"
           label="label"
           name="country"
           placeolder="Select a country">
@@ -69,7 +69,7 @@
           :options="ageRanges"
           label="label"
           name="age"
-          :tabindex="-1"
+          :tabindex="0"
           track-by="symbol"
           placeolder="Your agerange">
           <span slot="noResult">No such age range</span>
@@ -88,7 +88,7 @@
           :options="filteredBowTypes"
           label="text"
           name="bow"
-          :tabindex="-1"
+          :tabindex="0"
           track-by="text"
           placeolder="Your bow type">
           <span slot="noResult">No such bow type</span>
@@ -108,7 +108,7 @@
           label="name"
           name="accomm"
           :searchable="false"
-          :tabindex="-1"
+          :tabindex="0"
           track-by="name"
           group-values="rooms"
           group-label="building"
