@@ -28,14 +28,32 @@
       <div class="form-control-group">
         <div class="form-control">
           <label>Firstname
-          <input type="text" name="firstname" v-model="firstname" placeholder="John">
+          <input type="text"
+            name="firstname"
+            v-model="firstname"
+            placeholder="John"
+            required>
           </label>
         </div>
         <div class="form-control">
           <label>Surname
-          <input type="text" name="surname" v-model="surname" placeholder="Smith">
+          <input type="text"
+            name="surname"
+            v-model="surname"
+            placeholder="Smith"
+            required>
           </label>
         </div>
+      </div>
+
+      <div class="form-control">
+        <label>E-mail
+        <input type="email"
+          name="email"
+          v-model="email"
+          placeholder="john.smith@example.com"
+          required>
+        </label>
       </div>
 
       <div class="form-control">
@@ -170,6 +188,7 @@ export default {
       comment: '',
       firstname: '',
       surname: '',
+      email: '',
       gender: '',
       accommodation: null,
       age: '',
@@ -201,6 +220,7 @@ export default {
         country: this.country.key,
         firstname: this.firstname,
         surname: this.surname,
+        email: this.email,
         gender: this.gender,
         age: this.age.label,
         bow: this.bow.text,
@@ -225,11 +245,13 @@ export default {
         this.country,
         this.firstname,
         this.surname,
+        this.email,
         this.gender,
         this.age,
         this.bow
       ]
-      const validForm = requiredFields.every(field => !!field)
+      const validForm = requiredFields
+        .every(field => !!field || Object.keys(field || {}).length)
       if (!validForm) this.displayErrors = true
 
       return validForm
@@ -252,8 +274,11 @@ form > * {
 label {
   display: block;
   flex-basis: 100%;
-  margin-bottom: 1rem;
   cursor: pointer;
+
+  + label {
+    margin-top: 10px;
+  }
 }
 .form-control-group {
   flex-wrap: wrap;
@@ -269,6 +294,7 @@ textarea {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="number"], {
   display: block;
   appearance: none;
