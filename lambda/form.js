@@ -15,7 +15,7 @@ exports.handler = async (event, context, callback) => {
   // Post to Google Sheets
   const res = await got.post(process.env.FORM_WEBHOOK_URL, {
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
-    body
+    body: event.body
   })
   callback(null, { statusCode: 200 })
 }
