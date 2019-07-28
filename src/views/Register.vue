@@ -19,6 +19,7 @@
           :tabindex="0"
           label="label"
           name="country"
+          :show-labels="false"
           placeolder="Select a country">
           <span slot="noResult">No such country</span>
         </multiselect>
@@ -71,6 +72,7 @@
           name="age"
           :tabindex="0"
           track-by="symbol"
+          :show-labels="false"
           placeolder="Your agerange">
           <span slot="noResult">No such age range</span>
         </multiselect>
@@ -90,6 +92,7 @@
           name="bow"
           :tabindex="0"
           track-by="text"
+          :show-labels="false"
           placeolder="Your bow type">
           <span slot="noResult">No such bow type</span>
         </multiselect>
@@ -113,6 +116,7 @@
           group-values="rooms"
           group-label="building"
           :group-select="false"
+          :show-labels="false"
           placeolder="Room type">
           <template slot="option" slot-scope="props">
             <span v-if="props.option.$isLabel">{{ props.option.$groupLabel }}</span>
