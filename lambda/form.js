@@ -1,9 +1,4 @@
 const got = require('got')
-const requestOptions = {
-  headers: { 'Content-Type': 'application/json; charset=utf-8' },
-  method: 'POST',
-  cache: 'no-cache'
-}
 
 exports.handler = async (event, context, callback) => {
   // Budget honeypot
@@ -18,6 +13,9 @@ exports.handler = async (event, context, callback) => {
   console.log('Body received:', event.body)
 
   // Post to Google Sheets
-  const res = await got.post(process.env.FORM_WEBHOOK_URL, { body })
+  const res = await got.post(process.env.FORM_WEBHOOK_URL, {
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body
+  })
   callback(null, { statusCode: 200 })
 }
