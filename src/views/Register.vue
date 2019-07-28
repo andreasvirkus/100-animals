@@ -217,7 +217,8 @@ export default {
       const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
       const data = {
         'form-name': 'reg',
-        country: this.country.key,
+        country: this.country.label,
+        memberCode: this.country.key,
         firstname: this.firstname,
         surname: this.surname,
         email: this.email,
