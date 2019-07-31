@@ -246,9 +246,11 @@ export default {
 
       fetch(`/.netlify/functions/form`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        // body: JSON.stringify(data)
-        body: data
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
       }).then(() => {
         if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity--)
         this.$router.push('/submit')
