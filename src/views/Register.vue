@@ -272,7 +272,6 @@ export default {
       return validForm
     },
     mapAvailability (mapping) {
-      // this.roomTypes = this.roomTypes.map(building => building.rooms.map(room => ({
       this.roomTypes.forEach(building => {
         building.rooms = building.rooms.map(room => ({
           ...room,
