@@ -9,7 +9,16 @@ exports.handler = (event, context, callback) => {
   return client.query(q.Get(q.Collection('rooms')))
     .then((response) => {
       console.log('all rooms', response.data)
-      return response.data
+      return callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(response.data)
+      }
+    }).catch((error) => {
+      console.log('error', error)
+      return callback(null, {
+        statusCode: 400,
+        body: JSON.stringify(error)
+      })
     })
   // return client.query(q.Paginate(q.Match(q.Ref("indexes/all_todos"))))
   // .then((response) => {
