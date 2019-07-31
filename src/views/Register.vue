@@ -156,6 +156,7 @@
 <script>
 import Multiselect from 'vue-multiselect'
 
+import { db } from '@/db'
 import Checkbox from '@/components/Checkbox'
 import {
   ageRanges,
@@ -210,6 +211,15 @@ export default {
         })
       }
     }
+  },
+  created () {
+    db.collection('documents')
+      .get()
+      .then(querySnapshot => {
+        const documents = querySnapshot.map(doc => doc.data())
+        // do something with documents
+        console.log('docs', documents)
+      })
   },
   methods: {
     submit (e) {

@@ -95,26 +95,26 @@ export const roomTypes = [
   {
     building: 'Main building',
     rooms: [
-      { name: 'Twin room - Standard', price: 450, quantity: 3, code: 1 },
-      { name: 'Room w/ 3 single beds - Standard', price: 610, quantity: 4, code: 2 },
-      { name: 'Twin room - Comfort', price: 550, quantity: 8, code: 3 },
-      { name: 'Room w/ 3 single beds - Comfort', price: 750, quantity: 14, code: 4 },
-      { name: 'Room w/ 2 bunk beds (4ppl.)', price: 740, quantity: 7, code: 5 },
-      { name: 'Room w/ 3 bunk beds (6ppl.)', price: 1000, quantity: 4, code: 6 }
+      { name: 'Twin room - Standard', price: 450, code: 1 },
+      { name: 'Room w/ 3 single beds - Standard', price: 610, code: 2 },
+      { name: 'Twin room - Comfort', price: 550, code: 3 },
+      { name: 'Room w/ 3 single beds - Comfort', price: 750, code: 4 },
+      { name: 'Room w/ 2 bunk beds (4ppl.)', price: 740, code: 5 },
+      { name: 'Room w/ 3 bunk beds (6ppl.)', price: 1000, code: 6 }
     ]
   },
   {
     building: 'Stadion house',
     rooms: [
-      { name: 'Twin room', price: 450, quantity: 6, code: 7 }
+      { name: 'Twin room', price: 450, code: 7 }
     ]
   },
   {
     building: 'Camp houses',
     rooms: [
-      { name: 'House w/ twin room (2ppl.)', price: 400, quantity: 1, code: 8 },
-      { name: 'House w/ 4 single beds (4ppl.)', price: 700, quantity: 8, code: 9 },
-      { name: 'House w/ 2 bunk beds (4ppl.)', price: 700, quantity: 4, code: 10 }
+      { name: 'House w/ twin room (2ppl.)', price: 400, code: 8 },
+      { name: 'House w/ 4 single beds (4ppl.)', price: 700, code: 9 },
+      { name: 'House w/ 2 bunk beds (4ppl.)', price: 700, code: 10 }
     ]
   }
 ]
