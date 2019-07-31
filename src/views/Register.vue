@@ -243,7 +243,6 @@ export default {
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
       console.log('Submitting:', data)
-      console.log('With body:', JSON.stringify(data))
 
       fetch(`/.netlify/functions/form`, {
         method: 'POST',
