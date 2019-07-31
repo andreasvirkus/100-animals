@@ -255,7 +255,7 @@ export default {
       }).then(async (res) => {
         // TODO: check result
         // res
-        console.log('form:submit result', await res.json())
+        // console.log('form:submit result', await res.json())
         if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity--)
         this.$router.push('/submit')
         console.log('Success!')
