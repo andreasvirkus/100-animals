@@ -242,16 +242,20 @@ export default {
         room,
         class: `${ageGroupSymbol}${this.gender}${this.bow.symbol}`
       }
-      console.log('Submitting:', data)
+      const body = JSON.stringify(data)
+      console.log('Submitting:', data, body)
 
       fetch(`/.netlify/functions/form`, {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Accept': 'application/json; charset=utf-8',
+          'Content-Type': 'application/json; charset=utf-8'
         },
-        body: JSON.stringify(data)
-      }).then(() => {
+        body
+      }).then(async (res) => {
+        // TODO: check result
+        // res
+        console.log('form:submit result', await res.json())
         if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity--)
         this.$router.push('/submit')
         console.log('Success!')
