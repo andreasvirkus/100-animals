@@ -8,7 +8,8 @@ exports.handler = (event, context, callback) => {
   console.log('Function `rooms-read-all` invoked')
   return client.query(q.Get(q.Collection('rooms')))
     .then((response) => {
-      console.log('all rooms', response.data)
+      console.log('all rooms response', response)
+      console.log('all rooms data', response.data)
       return callback(null, {
         statusCode: 200,
         body: JSON.stringify(response.data)
