@@ -256,7 +256,7 @@ export default {
         // TODO: check result
         // res
         // console.log('form:submit result', await res.json())
-        if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity--)
+        if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity)
         this.$router.push('/submit')
         console.log('Success!')
       }).catch(error => console.error(error))
@@ -285,10 +285,10 @@ export default {
         }))
       })
     },
-    reduceAvailability (roomCode, newQuantity) {
+    reduceAvailability (roomCode, quantity) {
       db.collection('rooms')
         .doc('availability-map')
-        .update({ roomCode: newQuantity })
+        .update({ [roomCode]: --quantity })
         .then(() => console.log('room updated!'))
     }
   }
