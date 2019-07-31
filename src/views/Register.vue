@@ -212,14 +212,9 @@ export default {
       }
     }
   },
-  created () {
-    db.collection('documents')
-      .get()
-      .then(querySnapshot => {
-        const documents = querySnapshot.map(doc => doc.data())
-        // do something with documents
-        console.log('docs', documents)
-      })
+  async created () {
+    const snapshot = await db.collection('rooms').get()
+    snapshot.forEach(doc => this.mapAvailability(doc.data()))
   },
   methods: {
     submit (e) {
@@ -255,6 +250,7 @@ export default {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify(data)
       }).then(() => {
+        if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity--)
         this.$router.push('/submit')
         console.log('Success!')
       }).catch(error => console.error(error))
@@ -274,6 +270,21 @@ export default {
       if (!validForm) this.displayErrors = true
 
       return validForm
+    },
+    mapAvailability (mapping) {
+      // this.roomTypes = this.roomTypes.map(building => building.rooms.map(room => ({
+      this.roomTypes.forEach(building => {
+        building.rooms = building.rooms.map(room => ({
+          ...room,
+          quantity: mapping[room.code]
+        }))
+      })
+    },
+    reduceAvailability (roomCode, newQuantity) {
+      db.collection('rooms')
+        .doc(roomCode)
+        .update(newQuantity)
+        .then(() => console.log('room updated!'))
     }
   }
 }
