@@ -287,8 +287,8 @@ export default {
     },
     reduceAvailability (roomCode, newQuantity) {
       db.collection('rooms')
-        .doc('' + roomCode)
-        .update(newQuantity)
+        .doc('availability-map')
+        .update({ roomCode: newQuantity })
         .then(() => console.log('room updated!'))
     }
   }
