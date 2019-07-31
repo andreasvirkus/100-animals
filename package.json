@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "dayjs": "^1.8.15",
-    "faunadb": "^2.7.0",
     "got": "^9.6.0",
     "register-service-worker": "^1.0.0",
     "v-calendar": "^1.0.0-beta.14",

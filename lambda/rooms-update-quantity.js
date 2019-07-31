@@ -6,7 +6,10 @@ const client = new faunadb.Client({
 })
 
 exports.handler = (event, context, callback) => {
-  console.log('Function `rooms-delete` invoked')
+  console.log('Function `rooms-update-quantity` invoked')
+  return client.query(q.Update(q.Ref(q.Collection('rooms'), "192903209792046592"),
+    { data: { quantity: ["pet", "cute"] } }))
+    .then((ret) => console.log(ret))
   return client.query(q.Get(q.Collection('rooms')))
     .then((response) => {
       console.log('all rooms', response.data)
@@ -23,6 +26,11 @@ exports.handler = (event, context, callback) => {
     })
 }
 
+client.query(
+  q.Update(
+    q.Ref(q.Collection("posts"), "192903209792046592"),
+    { data: { tags: ["pet", "cute"] } }))
+.then((ret) => console.log(ret))
 
 exports.handler = (event, context, callback) => {
   const id = getId(event.path)
