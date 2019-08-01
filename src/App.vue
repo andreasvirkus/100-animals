@@ -26,11 +26,14 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #99cc33;
     &.router-link-exact-active {
       color: #42b983;
     }
   }
+}
+a {
+  text-decoration: underline;
 }
 .hidden-visually {
   pointer-events: none;
