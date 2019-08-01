@@ -1,7 +1,9 @@
 <template>
   <main class="reg">
-    <p class="error-message" v-show="displayErrors">
+    <p class="error-message" v-show="displayValidationError">
       Fields with an <span class="color-red">*</span> are mandatory!</p>
+    <p class="error-message" v-show="displayRoomError">
+      We're sorry to inform you that {{ accommodation.name }} was just booked.</p>
 
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
       <input type="hidden" name="important-name" v-model="regCheck" />
@@ -167,6 +169,7 @@ import {
 
 const proBowClasses = bowTypes.filter(b => b.pro)
 const proAgeClasses = ['A', 'S', 'V']
+let roomQuantityMap = []
 
 export default {
   name: 'register',
@@ -190,7 +193,8 @@ export default {
       payment: false,
       regCheck: 'must-reg',
       wantsAccommodation: false,
-      displayErrors: false
+      displayRoomError: false,
+      displayValidationError: false
     }
   },
   components: { Multiselect, Checkbox },
@@ -203,7 +207,7 @@ export default {
     }
   },
   watch: {
-    displayErrors (state) {
+    displayValidationError (state) {
       if (state) {
         window.scrollTo({
           top: 0,
@@ -216,14 +220,27 @@ export default {
     this.loadRoomQuantity()
   },
   methods: {
-    submit (e) {
-      this.displayErrors = false
+    async submit (e) {
+      this.displayRoomError = false
+      this.displayValidationError = false
       if (!this.validateFields()) return
 
       const ageGroupSymbol = this.pro ? 'P' : this.age.symbol
       const room = (this.wantsAccommodation && this.accommodation)
         ? `${this.accommodation.name} - ${this.accommodation.price}€`
         : ''
+
+      // Check selected room availability
+      if (room) {
+        await this.loadRoomQuantity()
+        const selectedRoom = roomQuantityMap.find(r => r.code === this.accommodation.code)
+        console.log('selected', selectedRoom)
+        if (selectedRoom.quantity < 1) {
+          this.displayRoomError = true
+          return
+        }
+      }
+
       const data = {
         formName: 'reg',
         check: this.regCheck,
@@ -269,7 +286,7 @@ export default {
       ]
       const validForm = requiredFields
         .every(field => !!field || Object.keys(field || {}).length)
-      if (!validForm) this.displayErrors = true
+      if (!validForm) this.displayValidationError = true
 
       return validForm
     },
@@ -286,6 +303,11 @@ export default {
           }))
           .filter(room => room.quantity > 0)
       })
+      roomQuantityMap = roomTypes
+        .map(building => building.rooms.map(room => ({
+          ...room,
+          quantity: mapping[room.code]
+        }))).flat()
     },
     reduceAvailability (roomCode, quantity) {
       db.collection('rooms')
