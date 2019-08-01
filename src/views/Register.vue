@@ -233,9 +233,10 @@ export default {
       // Check selected room availability
       if (room) {
         await this.loadRoomQuantity()
+        console.log('quantityMap', roomQuantityMap)
         const selectedRoom = roomQuantityMap.find(r => r.code === this.accommodation.code)
         console.log('selected', selectedRoom)
-        if (selectedRoom.quantity < 1) {
+        if (!selectedRoom || selectedRoom.quantity < 1) {
           this.displayRoomError = true
           return
         }
