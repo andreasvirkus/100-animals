@@ -213,6 +213,10 @@ export const countries = [
     label: 'Liechtenstein'
   },
   {
+    key: 'LAA',
+    label: 'Lithuania'
+  },
+  {
     key: 'FLTA',
     label: 'Luxembourg'
   },
