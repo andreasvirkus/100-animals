@@ -3,7 +3,7 @@
     <p class="error-message" v-if="displayValidationError">
       Fields with an <span class="color-red">*</span> are mandatory!</p>
     <p class="error-message" v-if="displayRoomError && accommodation">
-      We're sorry to inform you that {{ accommodation.name }} was just booked.</p>
+      We're sorry to inform you that the last <strong>{{ accommodation.name }}</strong> was just booked.</p>
 
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
       <input type="hidden" name="important-name" v-model="regCheck" />
