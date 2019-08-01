@@ -212,9 +212,8 @@ export default {
       }
     }
   },
-  async created () {
-    const snapshot = await db.collection('rooms').get()
-    snapshot.forEach(doc => this.mapAvailability(doc.data()))
+  created () {
+    this.loadRoomQuantity()
   },
   methods: {
     submit (e) {
@@ -253,9 +252,6 @@ export default {
         },
         body
       }).then(async (res) => {
-        // TODO: check result
-        // res
-        // console.log('form:submit result', await res.json())
         if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity)
         this.$router.push('/submit')
         console.log('Success!')
@@ -277,6 +273,10 @@ export default {
 
       return validForm
     },
+    async loadRoomQuantity () {
+      const snapshot = await db.collection('rooms').get()
+      snapshot.forEach(doc => this.mapAvailability(doc.data()))
+    },
     mapAvailability (mapping) {
       this.roomTypes.forEach(building => {
         building.rooms = building.rooms
@@ -291,7 +291,10 @@ export default {
       db.collection('rooms')
         .doc('availability-map')
         .update({ [roomCode]: --quantity })
-        .then(() => console.log('room updated!'))
+        .then(() => {
+          console.log('room updated!')
+          this.loadRoomQuantity()
+        })
     }
   }
 }
