@@ -2,8 +2,8 @@
   <main class="reg">
     <p class="error-message" v-if="displayValidationError">
       Fields with an <span class="color-red">*</span> are mandatory!</p>
-    <p class="error-message" v-if="displayRoomError">
-      We're sorry to inform you that {{ (accommodation || {}).name }} was just booked.</p>
+    <p class="error-message" v-if="displayRoomError && accommodation">
+      We're sorry to inform you that {{ accommodation.name }} was just booked.</p>
 
     <form name="reg" method="post" action="/submit" @submit.prevent="submit">
       <input type="hidden" name="important-name" v-model="regCheck" />
@@ -185,7 +185,7 @@ export default {
       surname: '',
       email: '',
       gender: '',
-      accommodation: null,
+      accommodation: {},
       age: '',
       pro: false,
       dob: new Date('10-07-1985'),
