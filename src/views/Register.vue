@@ -279,10 +279,12 @@ export default {
     },
     mapAvailability (mapping) {
       this.roomTypes.forEach(building => {
-        building.rooms = building.rooms.map(room => ({
-          ...room,
-          quantity: mapping[room.code]
-        }))
+        building.rooms = building.rooms
+          .map(room => ({
+            ...room,
+            quantity: mapping[room.code]
+          }))
+          .filter(room => room.quantity > 0)
       })
     },
     reduceAvailability (roomCode, quantity) {
