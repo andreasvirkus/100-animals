@@ -114,7 +114,7 @@
         </multiselect>
       </div>
 
-      <div class="form-control">
+      <div v-if="false" class="form-control">
         <label for="accommodation">Accommodation</label>
         <checkbox v-model="wantsAccommodation" name="accommodation"/>
       </div>
