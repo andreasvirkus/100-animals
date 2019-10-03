@@ -297,3 +297,16 @@ export const countries = [
     label: 'Wales'
   }
 ]
+
+export const roomPricingModel = [
+  { name: 'Twin room - Standard', price: 450, code: 1 }, // Code: TWIN-STANDARD
+  { name: 'Room w/ 3 single beds - Standard', price: 610, code: 2 }, // Code: TRIPLE-SINGLE-STANDARD
+  { name: 'Twin room - Comfort', price: 550, code: 3 }, // Code: TWIN-COMFORT
+  { name: 'Room w/ 3 single beds - Comfort', price: 750, code: 4 }, // Code: TRIPLE-SINGLE-COMFORT
+  { name: 'Room w/ 2 bunk beds (4ppl.)', price: 740, code: 5 }, // Code: DUAL-BUNK
+  { name: 'Room w/ 3 bunk beds (6ppl.)', price: 1000, code: 6 }, // Code: TRIPLE-BUNK
+  { name: 'Twin room', price: 450, code: 7 }, // Code: TWIN-STADION
+  { name: 'House w/ twin room (2ppl.)', price: 400, code: 8 }, // Code: TWIN-HOUSE
+  { name: 'House w/ 4 single beds (4ppl.)', price: 700, code: 9 }, // Code: SINGLE-BED-HOUSE
+  { name: 'House w/ 2 bunk beds (4ppl.)', price: 700, code: 10 } // Code: BUNK-BED-HOUSE
+]
