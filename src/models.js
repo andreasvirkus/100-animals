@@ -112,7 +112,7 @@ export const roomTypes = [
   {
     building: 'Camp houses',
     rooms: [
-      { name: 'House w/ twin room (2ppl.)', price: 400, code: 8 },
+      { name: 'House w/ twin room (2ppl.)', price: 450, code: 8 },
       { name: 'House w/ 4 single beds (4ppl.)', price: 700, code: 9 },
       { name: 'House w/ 2 bunk beds (4ppl.)', price: 700, code: 10 }
     ]
