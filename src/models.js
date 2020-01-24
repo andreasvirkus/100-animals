@@ -105,9 +105,7 @@ export const roomTypes = [
   },
   {
     building: 'Stadion house',
-    rooms: [
-      { name: 'Twin room', price: 450, code: 7 }
-    ]
+    rooms: [{ name: 'Twin room', price: 450, code: 7 }]
   },
   {
     building: 'Camp houses',
@@ -183,6 +181,10 @@ export const countries = [
   {
     key: 'DFBV',
     label: 'Germany'
+  },
+  {
+    key: 'HKFAA',
+    label: 'Hong Kong'
   },
   {
     key: 'HAA',
