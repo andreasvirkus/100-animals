@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "dayjs": "^1.9.1",
-    "firebase": "^7.23.0",
+    "firebase": "^7.11.0",
     "got": "^11.7.0",
     "v-calendar": "^1.0.8",
     "vue": "^2.6.12",
@@ -25,23 +25,11 @@
     "@vue/cli-plugin-eslint": "^4.5.7",
     "@vue/cli-service": "^4.5.7",
     "@vue/eslint-config-standard": "^5.1.2",
+    "eslint": "^7.11.0",
+    "eslint-plugin-vue": "^7.0.1",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
     "vue-template-compiler": "^2.6.12"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/standard"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "postcss": {
     "plugins": {
