@@ -1,20 +1,6 @@
 # WFAC 2020 registration form
 
-## TODO:
-- ~Add a date field~
-- ~Field validation for all fields~
-- ~Accommodation checkbox and dropdown~
-- ~All dropdowns should close after selection~
-- Over-booking protection (FaunaDB or Firebase maybe)
-- Based on the picked date, assign an age group (based on 01/08/2020)
-- ~Add a "professional" checkbox (will override age group code as "P")~
-- ~Professional can only be Adult or higher (with bow class FS-C, FS-R, FU)~
-- ~The assigned age group can be edited~
-- After the form is submitted, generate a unique registration code - increment from ten 11++
-- Display all saved/generated and unpaid registration codes to the user
-- Add buttons
-  - "Pay for all"
-  - "Register one more"
+A simple competition signup form. Scaffolded with `vue-cli`.
 
 ## Project setup
 ```

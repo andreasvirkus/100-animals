@@ -30,7 +30,7 @@ export const ageRanges = [
     upper: 64
   },
   {
-    symbol: 'Y',
+    symbol: 'YA',
     label: 'Young adult',
     lower: 17,
     upper: 20
@@ -52,7 +52,7 @@ export const bowTypes = [
   },
   {
     symbol: 'BH-R',
-    text: 'Bow-hunter Recurve'
+    text: 'Bowhunter Recurve'
   },
   {
     symbol: 'BB-R',
