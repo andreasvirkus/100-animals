@@ -1,5 +1,5 @@
 module.exports = {
   root: true,
   env: { node: true },
-  extends: ["eslint:recommended"]
+  extends: ['eslint:recommended', 'plugin:vue/recommended']
 }
