@@ -1,82 +1,129 @@
 <template>
   <main class="reg">
-    <p class="error-message" v-if="displayValidationError">
-      Fields with an <span class="color-red">*</span> are mandatory!</p>
-    <p class="error-message" v-if="displayRoomError && accommodation">
-      We're sorry to inform you that the last <strong>{{ accommodation.name }}</strong> was just booked.</p>
+    <p
+      v-if="displayValidationError"
+      class="error-message"
+    >
+      Fields with an <span class="color-red">*</span> are mandatory!
+    </p>
+    <p
+      v-if="displayRoomError && accommodation"
+      class="error-message"
+    >
+      We're sorry to inform you that the last <strong>{{ accommodation.name }}</strong> was just booked.
+    </p>
 
-    <form name="reg" method="post" action="/submit" @submit.prevent="submit">
-      <input type="hidden" name="important-name" v-model="regCheck" />
+    <form
+      name="reg"
+      method="post"
+      action="/submit"
+      @submit.prevent="submit"
+    >
+      <input
+        v-model="regCheck"
+        type="hidden"
+        name="important-name"
+      >
       <p style="display:none;">
         <label>Leave this field empty <input name="important-field"></label>
       </p>
 
       <div class="form-control">
-        <label for="country" class="mandatory">Country</label>
+        <label
+          for="country"
+          class="mandatory"
+        >Country</label>
         <multiselect
+          key="key"
           v-model="country"
           :options="countries"
-          key="key"
           :tabindex="0"
           label="label"
           name="country"
           :show-labels="false"
-          placeolder="Select a country">
+          placeolder="Select a country"
+        >
           <span slot="noResult">No such country</span>
         </multiselect>
       </div>
 
       <div class="form-control-group">
         <div class="form-control">
-          <label class="mandatory" for="firstname">Firstname</label>
-          <input type="text"
-            name="firstname"
+          <label
+            class="mandatory"
+            for="firstname"
+          >Firstname</label>
+          <input
             v-model="firstname"
+            type="text"
+            name="firstname"
             placeholder="John"
-            required>
+            required
+          >
         </div>
         <div class="form-control">
-          <label class="mandatory" for="surname">Surname</label>
-          <input type="text"
-            name="surname"
+          <label
+            class="mandatory"
+            for="surname"
+          >Surname</label>
+          <input
             v-model="surname"
+            type="text"
+            name="surname"
             placeholder="Smith"
-            required>
+            required
+          >
         </div>
       </div>
 
       <div class="form-control">
-        <label class="mandatory" for="email">E-mail</label>
-        <input type="email"
-          name="email"
+        <label
+          class="mandatory"
+          for="email"
+        >E-mail</label>
+        <input
           v-model="email"
+          type="email"
+          name="email"
           placeholder="john.smith@example.com"
-          required>
+          required
+        >
       </div>
 
       <div class="form-control">
-        <p class="mandatory">Gender</p>
+        <p class="mandatory">
+          Gender
+        </p>
         <label>
-          <input type="radio"
+          <input
             v-model="gender"
+            type="radio"
             name="gender"
-            value="M"> Male</label>
+            value="M"
+          > Male</label>
         <label>
-          <input type="radio"
+          <input
             v-model="gender"
+            type="radio"
             name="gender"
-            value="F"> Female</label>
+            value="F"
+          > Female</label>
       </div>
 
-      <div class="form-control" v-if="false">
+      <div
+        v-if="false"
+        class="form-control"
+      >
         <label>Date of birth</label>
-        <v-date-picker v-model="dob"
+        <v-date-picker
+          v-model="dob"
           mode="single"
           is-required
           :input-props="{
             placeholder: '25/12/1975',
             name: 'dob'
-          }"/>
+          }"
+        />
       </div>
 
       <div class="form-control">
@@ -89,18 +136,28 @@
           :tabindex="0"
           track-by="symbol"
           :show-labels="false"
-          placeolder="Your agerange">
+          placeolder="Your agerange"
+        >
           <span slot="noResult">No such age range</span>
         </multiselect>
       </div>
 
-      <div class="form-control" v-if="applicableForProClass">
+      <div
+        v-if="applicableForProClass"
+        class="form-control"
+      >
         <label for="pro">Pro</label>
-        <checkbox v-model="pro" name="pro"/>
+        <checkbox
+          v-model="pro"
+          name="pro"
+        />
       </div>
 
       <div class="form-control">
-        <label for="bow" class="mandatory">Bow type</label>
+        <label
+          for="bow"
+          class="mandatory"
+        >Bow type</label>
         <multiselect
           v-model="bow"
           :options="filteredBowTypes"
@@ -109,17 +166,24 @@
           :tabindex="0"
           track-by="text"
           :show-labels="false"
-          placeolder="Your bow type">
+          placeolder="Your bow type"
+        >
           <span slot="noResult">No such bow type</span>
         </multiselect>
       </div>
 
       <div class="form-control">
         <label for="accommodation">Accommodation</label>
-        <checkbox v-model="wantsAccommodation" name="accommodation"/>
+        <checkbox
+          v-model="wantsAccommodation"
+          name="accommodation"
+        />
       </div>
 
-      <div class="form-control" v-if="wantsAccommodation">
+      <div
+        v-if="wantsAccommodation"
+        class="form-control"
+      >
         <label for="accomm">Room type</label>
         <multiselect
           v-model="accommodation"
@@ -133,10 +197,17 @@
           group-label="building"
           :group-select="false"
           :show-labels="false"
-          placeolder="Room type">
-          <template slot="option" slot-scope="props">
+          placeolder="Room type"
+        >
+          <template
+            slot="option"
+            slot-scope="props"
+          >
             <span v-if="props.option.$isLabel">{{ props.option.$groupLabel }}</span>
-            <div v-else class="price-options">
+            <div
+              v-else
+              class="price-options"
+            >
               <span>{{ (props.option || {}).name }}</span>
               <span>- {{ (props.option || {}).price }}&euro;</span>
             </div>
@@ -146,11 +217,16 @@
 
       <div class="form-control">
         <label>Comment
-          <textarea v-model="comment" class="textarea"></textarea>
+          <textarea
+            v-model="comment"
+            class="textarea"
+          />
         </label>
       </div>
 
-      <button type="submit">Register</button>
+      <button type="submit">
+        Register
+      </button>
     </form>
   </main>
 </template>
@@ -172,7 +248,8 @@ const proAgeClasses = ['A', 'S', 'V']
 let roomQuantityMap = []
 
 export default {
-  name: 'register',
+  name: 'Register',
+  components: { Multiselect, Checkbox },
   data () {
     return {
       bowTypes,
@@ -197,7 +274,6 @@ export default {
       displayValidationError: false
     }
   },
-  components: { Multiselect, Checkbox },
   computed: {
     applicableForProClass () {
       return this.age && proAgeClasses.includes(this.age.symbol)
@@ -220,7 +296,7 @@ export default {
     this.loadRoomQuantity()
   },
   methods: {
-    async submit (e) {
+    async submit () {
       this.displayRoomError = false
       this.displayValidationError = false
       if (!this.validateFields()) return
@@ -269,7 +345,7 @@ export default {
           'Content-Type': 'application/json; charset=utf-8'
         },
         body
-      }).then(async (res) => {
+      }).then(async () => {
         if (room) this.reduceAvailability(this.accommodation.code, this.accommodation.quantity)
         this.$router.push('/submit')
         console.log('Success!')
@@ -358,7 +434,7 @@ textarea {
 
 input[type="text"],
 input[type="email"],
-input[type="number"], {
+input[type="number"] {
   display: block;
   appearance: none;
   width: 100%;

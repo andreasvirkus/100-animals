@@ -1,18 +1,36 @@
 <template>
   <main class="about">
-    <h1>Current availability of rooms for
-      <a href="https://www.wfac2020.org"
+    <h1>
+      Current availability of rooms for
+      <a
+        href="https://www.wfac2020.org"
         target="_blank"
-        rel="noopener noreferrer">WFAC 2020</a></h1>
+        rel="noopener noreferrer"
+      >WFAC 2020</a>
+    </h1>
     <div>
       <hr>
-      <button type="button" @click="loadRoomQuantity">Refresh 👇</button>
+      <button
+        type="button"
+        @click="loadRoomQuantity"
+      >
+        Refresh 👇
+      </button>
     </div>
-    <div v-if="loading" class="row">
-      <spinner class="col col-sm-2"/>
+    <div
+      v-if="loading"
+      class="row"
+    >
+      <spinner class="col col-sm-2" />
     </div>
-    <ul v-else class="booking-list">
-      <li v-for="room in roomMapping" :key="room.code">
+    <ul
+      v-else
+      class="booking-list"
+    >
+      <li
+        v-for="room in roomMapping"
+        :key="room.code"
+      >
         <strong>{{ room.quantity }}</strong> room{{ room.quantity === 1 ? '' : 's' }} left for
         <strong>{{ room.name }}</strong>
       </li>
@@ -26,14 +44,14 @@ import Spinner from '@/components/Spinner'
 import { roomTypes } from '@/models'
 
 export default {
-  name: 'about',
+  name: 'About',
+  components: { Spinner },
   data () {
     return {
       loading: true,
       roomMapping: []
     }
   },
-  components: { Spinner },
   created () {
     this.loadRoomQuantity()
   },

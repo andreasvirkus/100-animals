@@ -1,39 +1,40 @@
 <template>
   <label
     class="checkbox__label"
-    :class="{ 'checkbox__label--disabled': disabled }">
-    <input type="checkbox"
-      :id="id"
-      :name="name"
+    :class="{ 'checkbox__label--disabled': disabled }"
+  >
+    <input
+      v-model="val"
+      v-bind="$attrs"
+      type="checkbox"
       :required="required"
       class="checkbox hidden-visually"
-      v-model="val"
-      :disabled="disabled">
+      :disabled="disabled"
+    >
     <svg
       class="checkbox__svg"
       width="18px"
       height="18px"
-      viewBox="0 0 18 18">
-      <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
-      <polyline points="1 9 7 14 15 4"></polyline>
+      viewBox="0 0 18 18"
+    >
+      <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z" />
+      <polyline points="1 9 7 14 15 4" />
     </svg>
   </label>
 </template>
 
 <script>
 export default {
-  name: 'checkbox',
+  name: 'Checkbox',
+  props: {
+    value: Boolean,
+    required: Boolean,
+    disabled: Boolean
+  },
   data () {
     return {
       val: this.value
     }
-  },
-  props: {
-    id: String,
-    name: String,
-    value: Boolean,
-    required: Boolean,
-    disabled: Boolean
   },
   watch: {
     val () {
