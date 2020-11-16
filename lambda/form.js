@@ -1,6 +1,6 @@
 const got = require('got')
 
-exports.handler = async (event, context, callback) => {
+exports.handler = async (event) => {
   // Budget honeypot
   console.log('Event body:', event.body)
   const body = JSON.parse(event.body)
@@ -8,15 +8,12 @@ exports.handler = async (event, context, callback) => {
   const { formName, check } = body
   console.log('parsed', formName, check)
   if (formName !== 'reg' || check !== 'must-reg') {
-    return callback(null, { statusCode: 403 })
+    return { statusCode: 403, body: JSON.stringify({ status: false }) }
   }
 
   // Post to Google Sheets
-  const res = got(process.env.FORM_WEBHOOK_URL, {
-    body,
-    json: true,
-    // form: true,
-    method: 'POST'
+  got.post(process.env.FORM_WEBHOOK_URL, {
+    json: body,
   })
-  callback(null, { statusCode: 200 })
+  return { statusCode: 200, body: JSON.stringify({ status: true }) }
 }
