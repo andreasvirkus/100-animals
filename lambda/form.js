@@ -15,5 +15,7 @@ exports.handler = async (event) => {
   got.post(process.env.FORM_WEBHOOK_URL, {
     json: body,
   })
+
+  await new Promise((resolve) => setTimeout(resolve, 2000))
   return { statusCode: 200, body: JSON.stringify({ status: true }) }
 }
