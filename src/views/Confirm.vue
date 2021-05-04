@@ -160,10 +160,10 @@ export default {
         formName: 'reg',
         check: this.regCheck,
         regNumber: this.regNumber,
-        memberCode: this.country.key,
         firstname: this.firstname,
         surname: this.surname,
         age: this.age.label,
+        participation: this.participating,
         comment: this.comment,
       }
       const body = JSON.stringify(data)
