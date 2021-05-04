@@ -1,6 +1,6 @@
 # WFAC 2020 registration form
 
-A simple competition signup form. Scaffolded with `vue-cli`.
+A simple competition signup form. Scaffolded with `vue-cli`. Utilises Netlify's Serverless functions to forward the form data to Google Sheets.
 
 ## Project setup
 ```
