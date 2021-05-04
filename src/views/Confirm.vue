@@ -88,6 +88,7 @@
         <label for="">WFAC participation on August 5-13, 2022</label>
         <label>
           <input
+            v-model="participating"
             type="radio"
             name="participation"
             value="YES"
@@ -95,6 +96,7 @@
         </label>
         <label>
           <input
+            v-model="participating"
             type="radio"
             name="participation"
             value="NO"
@@ -132,8 +134,6 @@ export default {
       firstname: '',
       surname: '',
       age: '',
-      dob: new Date('10-07-1985'),
-      bow: '',
       regCheck: 'must-reg',
       regNumber: undefined,
       participating: false,
@@ -183,16 +183,13 @@ export default {
     },
     validateFields () {
       const requiredFields = [
-        this.country,
+        this.regNumber,
         this.firstname,
         this.surname,
-        this.email,
-        this.gender,
         this.age,
-        this.bow
+        this.participating,
       ]
-      const validForm = requiredFields
-        .every(field => !!field || Object.keys(field || {}).length)
+      const validForm = requiredFields.every(Boolean)
       if (!validForm) this.displayValidationError = true
 
       return validForm
