@@ -45,4 +45,8 @@ a {
   display: flex;
   align-items: center;
 }
+
+input[type=radio]:checked {
+  box-shadow: inset 0 0 0 0.2em white, 0 0 0 0.2em #56be8e !important;
+}
 </style>

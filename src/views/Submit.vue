@@ -1,22 +1,7 @@
 <template>
   <main class="submit">
-    <h1>Registered!</h1>
-    <p>
-      You can pay via a bank transfer
-      <a
-        href="https://www.wfac2020.org/entrance-fee"
-        target="_blank"
-        rel="noopener noreferrer"
-      >here</a>.
-    </p>
-    <p>
-      For card payments, please follow this link:
-      <a
-        href="https://fienta.com/wfac-2020"
-        target="_blank"
-        rel="noopener noreferrer"
-      >fienta.com/WFAC-2020</a>.
-    </p>
+    <h1>Registration confirmed!</h1>
+    <p>Thank you for confirming your registration for 2022.</p>
     <router-link to="/reg">
       👈 Register another person
     </router-link>

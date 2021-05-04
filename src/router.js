@@ -16,6 +16,12 @@ export default new Router({
       component: Register // Home
     },
     {
+      path: '/confirm',
+      name: 'confirm',
+      component: () =>
+        import(/* webpackChunkName: "confirm" */ './views/Confirm.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () =>
