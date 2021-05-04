@@ -157,7 +157,7 @@ export default {
 
       const data = {
         renew: true,
-        formName: 'reg',
+        formName: 'confirm',
         check: this.regCheck,
         regNumber: this.regNumber,
         firstname: this.firstname,
