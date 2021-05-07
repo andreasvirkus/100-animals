@@ -85,7 +85,7 @@
       </div>
 
       <div class="form-control">
-        <label for="">WFAC participation on August 5-13, 2022</label>
+        <label class="mandatory">WFAC participation on August 5-13, 2022</label>
         <label>
           <input
             v-model="participating"

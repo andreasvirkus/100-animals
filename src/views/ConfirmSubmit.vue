@@ -2,9 +2,9 @@
   <main class="submit">
     <h1>Registration confirmed!</h1>
     <p>Thank you for confirming your registration for 2022.</p>
-    <router-link to="/reg">
-      👈 Register another person
-    </router-link>
+    <a href="javascript:history.back()">
+      👈 Update another person
+    </a>
   </main>
 </template>
 

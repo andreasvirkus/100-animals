@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// import Home from './views/Home.vue'
-import Register from './views/Register.vue'
-// import Closed from './views/Closed.vue'
-
 Vue.use(Router)
 
 export default new Router({
@@ -13,7 +9,8 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Register // Home
+      component: () =>
+        import(/* webpackChunkName: "reg" */ './views/Register.vue')
     },
     {
       path: '/confirm',
@@ -38,6 +35,12 @@ export default new Router({
       name: 'submit',
       component: () =>
         import(/* webpackChunkName: "submit" */ './views/Submit.vue')
+    },
+    {
+      path: '/confirmed',
+      name: 'confirmed',
+      component: () =>
+        import(/* webpackChunkName: "confirmed" */ './views/ConfirmSubmit.vue')
     },
     {
       path: '/*',
